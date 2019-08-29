@@ -1,0 +1,11 @@
+{
+  "name": "meetapp_backend",
+  "version": "1.0.0",
+  "description": "backend of the meetapp, an event's app",
+  "main": "src/app.js",
+  "author": "Pablo Satler",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}

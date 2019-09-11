@@ -23,6 +23,14 @@ class UserController {
       email,
     });
   }
+
+  // route protected by middleware
+  async update(req, res) {
+    console.log(req.userId);
+    return res.json({
+      ok: true,
+    });
+  }
 }
 
 export default new UserController();

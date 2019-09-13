@@ -1,7 +1,24 @@
+import * as Yup from 'yup';
 import User from '../models/User';
 
 class UserController {
   async store(req, res) {
+    // create the schema to be used to validate the req.body
+    const schema = Yup.object().shape({
+      name: Yup.string().required(),
+      email: Yup.string()
+        .email()
+        .required(),
+      password: Yup.string()
+        .required()
+        .min(6),
+    });
+
+    // if is not valid, go inside if-statement
+    if (!(await schema.isValid(req.body))) {
+      return res.status(400).json({ error: 'Validation has failed' });
+    }
+
     const userExists = await User.findOne({
       where: {
         email: req.body.email,
@@ -26,6 +43,27 @@ class UserController {
 
   // route protected by middleware
   async update(req, res) {
+    const schema = Yup.object().shape({
+      name: Yup.string(),
+      email: Yup.string().email(),
+      oldPassword: Yup.string().min(6), // this is an optional field when updating
+      // but if it exists, password must be inserted as well
+      password: Yup.string()
+        .min(6)
+        .when('oldPassword', (oldPassword, field) =>
+          // make it required if oldPassword present
+          oldPassword ? field.required() : field
+        ),
+      confirmPassword: Yup.string().when('password', (password, field) =>
+        password ? field.required().oneOf([Yup.ref('password')]) : field
+      ),
+    });
+
+    // if is not valid, go inside if-statement
+    if (!(await schema.isValid(req.body))) {
+      return res.status(400).json({ error: 'Validation has failed' });
+    }
+
     // get some values to perform validations
     const { email, oldPassword } = req.body;
     // get the user which is wanting to be edited in the database
@@ -47,12 +85,12 @@ class UserController {
     }
 
     // if everything passes, we update the user
-    const { id, name } = await user.update(req.body);
+    const { id, name, email: userEmail } = await user.update(req.body);
 
     return res.json({
       id,
       name,
-      email,
+      email: userEmail,
     });
   }
 }

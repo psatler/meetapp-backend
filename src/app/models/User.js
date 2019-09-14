@@ -25,6 +25,14 @@ class User extends Model {
     return this;
   }
 
+  // to create the relationship between the avatar image stored in the files
+  // table with its respective user in the users table
+  static associate(models) {
+    this.belongsTo(models.File, {
+      foreignKey: 'avatar_id',
+    });
+  }
+
   // compare the password typed with its stored hash
   checkPassword(password) {
     return bcrypt.compare(password, this.password_hash);

@@ -13,9 +13,6 @@ export default {
           callback(err);
         }
 
-        // console.log('req', req);
-        console.log('file', file);
-
         const fileName = res.toString('hex') + extname(file.originalname);
         return callback(null, fileName);
       });

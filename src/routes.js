@@ -5,6 +5,7 @@ import authMiddleware from './app/middlewares/auth';
 
 import UserController from './app/controllers/UserController';
 import SessionController from './app/controllers/SessionController';
+import FileController from './app/controllers/FileController';
 
 const routes = new Router();
 const upload = multer(multerConfig);
@@ -19,8 +20,6 @@ routes.put('/users', UserController.update);
 
 // upload for upload of files
 // single for uploading one file at a time and the fieldname used in the request
-routes.post('/files', upload.single('file'), (req, res) => {
-  return res.json({ ok: true });
-});
+routes.post('/files', upload.single('file'), FileController.store);
 
 export default routes;

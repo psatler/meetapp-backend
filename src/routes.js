@@ -6,6 +6,7 @@ import authMiddleware from './app/middlewares/auth';
 import UserController from './app/controllers/UserController';
 import SessionController from './app/controllers/SessionController';
 import FileController from './app/controllers/FileController';
+import MeetupController from './app/controllers/MeetupController';
 
 const routes = new Router();
 const upload = multer(multerConfig);
@@ -17,6 +18,8 @@ routes.post('/session', SessionController.store);
 routes.use(authMiddleware);
 
 routes.put('/users', UserController.update);
+
+routes.post('/meetups', MeetupController.store);
 
 // upload for upload of files
 // single for uploading one file at a time and the fieldname used in the request

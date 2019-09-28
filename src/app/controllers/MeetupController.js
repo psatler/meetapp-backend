@@ -1,4 +1,5 @@
 import * as Yup from 'yup';
+import { isBefore, parseISO } from 'date-fns';
 import Meetup from '../models/Meetup';
 
 class MeetupController {
@@ -20,6 +21,14 @@ class MeetupController {
     // if everything went well, obtain user's ID from token
     const { userId } = req;
     const { title, description, location, date, banner_image_id } = req.body;
+
+    // checking if the date the user is creating the meetup is not a past date
+    const registrationDate = parseISO(date);
+    if (isBefore(registrationDate, new Date())) {
+      return res.status(400).json({ error: 'Past dates are not permitted' });
+    }
+
+    // create the meetup registration
     let meetup = null;
     try {
       meetup = await Meetup.create({

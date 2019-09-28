@@ -22,10 +22,11 @@ class Meetup extends Model {
   static associate(models) {
     this.belongsTo(models.File, {
       foreignKey: 'banner_image_id',
+      as: 'banner',
     });
     this.belongsTo(models.User, {
       foreignKey: 'user_id',
-      // as: 'organizer',
+      as: 'organizer',
     });
   }
 }

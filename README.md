@@ -12,7 +12,7 @@ This is a portfolio project showcasing Nodejs in the backend. The application is
 
 An user can authenticate itself in the application by using an email and password.
 
-- Authentication using JWT
+- Authentication using JWT :ballot_box_with_check:
 - Input validation using yup
 
 ### _Registration and update of user_

@@ -13,29 +13,29 @@ This is a portfolio project showcasing Nodejs in the backend. The application is
 An user can authenticate itself in the application by using an email and password.
 
 - Authentication using JWT :ballot_box_with_check:
-- Input validation using yup
+- Input validation using yup :ballot_box_with_check:
 
 ### _Registration and update of user_
 
-New users can registrate themselves using name, email and password.
+New users can registrate themselves using name, email and password. :ballot_box_with_check:
 
-To update the password, the user should also send a field to confirm the password.
+To update the password, the user should also send a field to confirm the password. :ballot_box_with_check:
 
-- Users can log in and register. The user's password is encrypted when saved in the database.
+- Users can log in and register. The user's password is encrypted when saved in the database. :ballot_box_with_check:
 
 ### _Files management_
 
-There will be a route to perform upload of files. This rout ewill register the path of the file in a database table and return all the file's information.
+There will be a route to perform upload of files. This rout ewill register the path of the file in a database table and return all the file's information. :ballot_box_with_check:
 
 ### _Meetup management_
 
-A user can create meetups in the application's database by using a `title of meetup`, `description`, `locatization`, `date and time` and a `banner image`. All of the mentioned fields are **required**. Also, there is a `user_id` field to store the user who organizes the meetup.
+A user can create meetups in the application's database by using a `title of meetup`, `description`, `locatization`, `date and time` and a `banner image`. All of the mentioned fields are **required**. Also, there is a `user_id` field to store the user who organizes the meetup. :ballot_box_with_check:
 
-It is not possible to create meetups with dates already passed.
+It is not possible to create meetups with dates already passed. :ballot_box_with_check:
 
 The user can edit all the fields of a meetup that hasn't happened yet and the user is the organizer.
 
-Create a route to list all the meetups organized by the logged user.
+Create a route to list all the meetups organized by the logged user. :ballot_box_with_check:
 
 The user should be able to cancel meetups organized by them and that didn't happen yet. The cancelation should delete the meetup from the database.
 

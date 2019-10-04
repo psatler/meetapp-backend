@@ -53,7 +53,7 @@ Whenever a user register themselves in a meetup, an email should be sent to the 
 
 ### _Listing the meetups_
 
-There is a route that lists the meetups with a filter by date only (not time). The results of that list should come paginated by 10 items per page. Below is an example of a request to the route for listing the meetups:
+There is a route that lists the meetups with a filter by date only (not time). The results of that list should come paginated by 10 items per page. Below is an example of a request to the route for listing the meetups: :ballot_box_with_check:
 
 ```
 http://localhost:3333/meetups?date=2019-07-01&page=2
@@ -61,7 +61,7 @@ http://localhost:3333/meetups?date=2019-07-01&page=2
 
 In the example's above, we're listing the page 2 of the meetups that will happen in the 1st of July.
 
-In this listing, also return the organizer's information.
+In this listing, also return the organizer's information. :ballot_box_with_check:
 
 ### _Listing the subscriptions_
 

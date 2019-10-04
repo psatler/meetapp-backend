@@ -1,8 +1,11 @@
 import * as Yup from 'yup';
-import { isBefore, parseISO } from 'date-fns';
+import { Op } from 'sequelize';
+import { isBefore, parseISO, startOfDay, endOfDay } from 'date-fns';
 import Meetup from '../models/Meetup';
 import File from '../models/File';
 import User from '../models/User';
+
+const PAGINATION_LIMIT = 10;
 
 class MeetupController {
   // validate and create a meetup
@@ -42,20 +45,30 @@ class MeetupController {
         user_id: userId, // referencing the user who is creating the meetup
       });
     } catch (error) {
-      console.log('MeetupController.store', error);
+      console.warn('MeetupController.store', error);
     }
 
     return res.json(meetup);
   }
 
-  // ### listing the meetups organized by the logged user ###
+  // ### listing the meetups filtered by date and also paginated ###
   async index(req, res) {
-    const loggedUserID = req.userId;
+    // the default page is 1
+    const { page = 1, date } = req.query;
+    const whereObj = {};
+
+    // check if there is a date in the query
+    if (date) {
+      const searchedDate = parseISO(date);
+      whereObj.date = {
+        [Op.between]: [startOfDay(searchedDate), endOfDay(searchedDate)],
+      };
+    }
 
     const meetups = await Meetup.findAll({
-      where: {
-        user_id: loggedUserID,
-      },
+      where: whereObj, // either empty object or one with date range inside
+      limit: PAGINATION_LIMIT, // limiting the number of results sent back from the database
+      offset: (page - 1) * PAGINATION_LIMIT,
       attributes: ['id', 'title', 'description', 'location', 'date'],
       include: [
         // including info got from the relationship with Files table
@@ -64,16 +77,23 @@ class MeetupController {
           as: 'banner',
           attributes: ['id', 'name', 'path', 'url'],
         },
+        {
+          model: User,
+          as: 'organizer',
+          attributes: ['id', 'name', 'email'],
+          include: [
+            {
+              model: File,
+              as: 'avatar',
+              attributes: ['id', 'path', 'url'],
+            },
+          ],
+        },
       ],
     });
 
     return res.json(meetups);
   }
 }
-
-// getting the meeups by user
-// modifying File model to return the url of the file
-// for that, we set up a static route to serve static files. We do that by
-// using a middleware.
 
 export default new MeetupController();

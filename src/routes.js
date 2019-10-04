@@ -7,6 +7,7 @@ import UserController from './app/controllers/UserController';
 import SessionController from './app/controllers/SessionController';
 import FileController from './app/controllers/FileController';
 import MeetupController from './app/controllers/MeetupController';
+import OrganizerController from './app/controllers/OrganizerController';
 
 const routes = new Router();
 const upload = multer(multerConfig);
@@ -21,6 +22,8 @@ routes.put('/users', UserController.update);
 
 routes.get('/meetups', MeetupController.index);
 routes.post('/meetups', MeetupController.store);
+
+routes.get('/organizer', OrganizerController.index);
 
 // upload for upload of files
 // single for uploading one file at a time and the fieldname used in the request

@@ -1,6 +1,6 @@
 import * as Yup from 'yup';
 import { Op } from 'sequelize';
-import { isBefore, parseISO, startOfDay, endOfDay } from 'date-fns';
+import { isBefore, parseISO, startOfDay, endOfDay, isValid } from 'date-fns';
 import Meetup from '../models/Meetup';
 import File from '../models/File';
 import User from '../models/User';
@@ -69,7 +69,7 @@ class MeetupController {
       where: whereObj, // either empty object or one with date range inside
       limit: PAGINATION_LIMIT, // limiting the number of results sent back from the database
       offset: (page - 1) * PAGINATION_LIMIT,
-      attributes: ['id', 'title', 'description', 'location', 'date'],
+      attributes: ['id', 'title', 'description', 'location', 'date', 'past'],
       include: [
         // including info got from the relationship with Files table
         {
@@ -93,6 +93,67 @@ class MeetupController {
     });
 
     return res.json(meetups);
+  }
+
+  async update(req, res) {
+    // validating the fields passed when the organizer is updating a meetup info
+    const schema = Yup.object().shape({
+      title: Yup.string(),
+      description: Yup.string(),
+      location: Yup.string(),
+      date: Yup.date(),
+      banner_image_id: Yup.number(), // id of the image uploaded by the user
+    });
+
+    // if is not valid, go inside if-statement
+    if (!(await schema.isValid(req.body))) {
+      return res.status(400).json({ error: 'Schema Validation has failed' });
+    }
+
+    const loggedUserId = req.userId; // property added in the middleware
+    const { meetupId } = req.params;
+
+    const foundMeetup = await Meetup.findByPk(meetupId);
+
+    // if null
+    if (!foundMeetup) {
+      return res
+        .status(400)
+        .json({ error: 'Meetup not found for with this id' });
+    }
+
+    // if the meetup id queried do not belongs to the logged user
+    // in summary, if the logged user is not the organizer of the meetup
+    if (loggedUserId !== foundMeetup.user_id) {
+      return res
+        .status(401)
+        .json({ error: 'Not authorized to access this meetup info.' });
+    }
+
+    // check if date entered by user is not a past date or an invalid one
+    const dateEntered = parseISO(req.body.date);
+    if (!isValid(dateEntered)) {
+      return res.status(400).json({
+        error: 'Date inserted is invalid',
+      });
+    }
+    if (isBefore(dateEntered, new Date())) {
+      return res.status(400).json({
+        error: 'Date inserted is a past date',
+      });
+    }
+
+    // user cannot update past meetups
+    if (foundMeetup.past) {
+      return res.status(400).json({
+        error: 'Can not update past updates',
+      });
+    }
+
+    // if pass all validations, update fields passed in the body of the request
+    const meetupUpdated = await foundMeetup.update(req.body);
+    // console.log(foundMeetup.past);
+    return res.json(meetupUpdated);
   }
 }
 

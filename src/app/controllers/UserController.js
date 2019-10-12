@@ -71,8 +71,10 @@ class UserController {
 
     // if user is wanting to change email
     if (email !== user.email) {
+      // tries to find another user with the email that the user has typed
       const userExists = await User.findOne({ where: { email } });
 
+      // if found
       if (userExists) {
         return res.status(400).json({ error: 'User already exists' });
       }

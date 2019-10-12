@@ -33,7 +33,7 @@ A user can create meetups in the application's database by using a `title of mee
 
 It is not possible to create meetups with dates already passed. :ballot_box_with_check:
 
-The user can edit all the fields of a meetup that hasn't happened yet and the user is the organizer.
+The user can edit all the fields of a meetup that hasn't happened yet and the user is the organizer. :ballot_box_with_check:
 
 Create a route to list all the meetups organized by the logged user. :ballot_box_with_check:
 

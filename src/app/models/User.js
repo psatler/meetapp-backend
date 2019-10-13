@@ -32,6 +32,12 @@ class User extends Model {
       foreignKey: 'avatar_id',
       as: 'avatar',
     });
+    // an user has several subscriptions and can also organize several meetups
+    this.hasMany(models.Subscription, {
+      foreignKey: 'user_id', // The name of the foreign key in the target table
+      as: 'user',
+    });
+    this.hasMany(models.Meetup); // user_id is also the foreign key in the Meetup that represents the user
   }
 
   // compare the password typed with its stored hash

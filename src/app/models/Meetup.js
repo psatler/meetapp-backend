@@ -37,6 +37,10 @@ class Meetup extends Model {
       foreignKey: 'user_id',
       as: 'organizer',
     });
+    this.hasMany(models.Subscription, {
+      foreignKey: 'meetup_id', // The name of the foreign key in the target table.
+      as: 'meetup',
+    });
   }
 }
 

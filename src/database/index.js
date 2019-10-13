@@ -5,11 +5,12 @@ import mongoose from 'mongoose';
 import User from '../app/models/User';
 import File from '../app/models/File';
 import Meetup from '../app/models/Meetup';
+import Subscription from '../app/models/Subscription';
 
 import databaseConfig from '../config/database';
 
 // storing the models in an array to initiliaze the connection for each of them
-const models = [User, File, Meetup];
+const models = [User, File, Meetup, Subscription];
 
 class Database {
   constructor() {

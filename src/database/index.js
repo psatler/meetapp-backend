@@ -1,4 +1,5 @@
 import Sequelize from 'sequelize';
+import mongoose from 'mongoose';
 
 // importing the models
 import User from '../app/models/User';
@@ -14,6 +15,8 @@ class Database {
   constructor() {
     // calling the method init
     this.init();
+    // initilizing mongo db set up
+    this.mongo();
   }
 
   init() {
@@ -25,6 +28,18 @@ class Database {
       // checking if the static method associate exists in the Model before
       // performing the giving association
       .map(model => model.associate && model.associate(this.connection.models));
+  }
+
+  mongo() {
+    // setting up a mongo db connection
+    this.mongoConnection = mongoose.connect(
+      'mongodb://localhost:27017/meetupapp',
+      {
+        useNewUrlParser: true,
+        useFindAndModify: true,
+        useUnifiedTopology: true,
+      }
+    );
   }
 }
 

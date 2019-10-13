@@ -70,7 +70,7 @@ class MeetupController {
       limit: PAGINATION_LIMIT, // limiting the number of results sent back from the database
       offset: (page - 1) * PAGINATION_LIMIT,
       attributes: ['id', 'title', 'description', 'location', 'date', 'past'],
-      order: [['date', 'DESC']],
+      order: [['date', 'DESC']], // will escape date and validate DESC against a list of valid direction parameters
       include: [
         // including info got from the relationship with Files table
         {

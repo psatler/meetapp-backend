@@ -37,7 +37,7 @@ The user can edit all the fields of a meetup that hasn't happened yet and the us
 
 Create a route to list all the meetups organized by the logged user. :ballot_box_with_check:
 
-The user should be able to cancel meetups organized by them and that didn't happen yet. The cancelation should delete the meetup from the database.
+The user should be able to cancel meetups organized by them and that didn't happen yet. The cancelation should delete the meetup from the database. :ballot_box_with_check:
 
 ### _Meetup subscription_
 

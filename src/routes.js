@@ -8,6 +8,7 @@ import SessionController from './app/controllers/SessionController';
 import FileController from './app/controllers/FileController';
 import MeetupController from './app/controllers/MeetupController';
 import OrganizerController from './app/controllers/OrganizerController';
+import SubscriptionController from './app/controllers/SubscriptionController';
 
 const routes = new Router();
 const upload = multer(multerConfig);
@@ -26,6 +27,8 @@ routes.put('/meetups/:meetupId', MeetupController.update);
 routes.delete('/meetups/:meetupId', MeetupController.delete);
 
 routes.get('/organizer', OrganizerController.index);
+
+routes.post('/meetup/:meetupId/subscription', SubscriptionController.store);
 
 // upload for upload of files
 // single for uploading one file at a time and the fieldname used in the request

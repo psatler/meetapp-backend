@@ -41,13 +41,13 @@ The user should be able to cancel meetups organized by them and that didn't happ
 
 ### _Meetup subscription_
 
-The user should be able to register themselves in meetups not organized by them.
+The user should be able to register themselves in meetups not organized by them. :ballot_box_with_check:
 
-The user cannot register themselves in meetups that already happened.
+The user cannot register themselves in meetups that already happened. :ballot_box_with_check:
 
-The user cannot register themselves twice in a same meetup.
+The user cannot register themselves twice in a same meetup. :ballot_box_with_check:
 
-The user cannot register themselves in two different meetups that happen in the same date and time.
+The user cannot register themselves in two different meetups that happen in the same date and time. :ballot_box_with_check:
 
 Whenever a user register themselves in a meetup, an email should be sent to the organizer of the meetup having pieces of information of the registered user. An email template should be created as well.
 

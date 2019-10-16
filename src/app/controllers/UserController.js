@@ -70,7 +70,7 @@ class UserController {
     const user = await User.findByPk(req.userId);
 
     // if user is wanting to change email
-    if (email !== user.email) {
+    if (email && email !== user.email) {
       // tries to find another user with the email that the user has typed
       const userExists = await User.findOne({ where: { email } });
 

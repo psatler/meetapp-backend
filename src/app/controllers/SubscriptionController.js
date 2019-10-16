@@ -1,6 +1,9 @@
 import { Op } from 'sequelize';
+import { parseISO } from 'date-fns';
 import Subscription from '../models/Subscription';
 import Meetup from '../models/Meetup';
+import User from '../models/User';
+import File from '../models/File';
 
 class SubscriptionController {
   async store(req, res) {
@@ -86,6 +89,63 @@ class SubscriptionController {
     });
 
     return res.json(createdSub);
+  }
+
+  async index(req, res) {
+    const loggedUserId = req.userId;
+
+    // below it shows the pieces of information of the meetup along with the
+    // its banner image and the organizer info as well
+    const subscriptions = await Subscription.findAll({
+      where: {
+        user_id: loggedUserId,
+      },
+      order: [[{ model: Meetup, as: 'meetup' }, 'date', 'ASC']], // ordering the subscriptions by date showing the closest by date first
+      include: [
+        {
+          model: Meetup,
+          as: 'meetup',
+          where: {
+            // past: false, // returning only meetups that has not happened yet can't use past as this is a virtual field in db
+            date: {
+              [Op.gt]: new Date(), // returning dates greater (in the future) than current date
+            },
+          },
+          // order: [['date', 'DESC']], // ordering the meetup by date showing the most recent first
+          attributes: [
+            'id',
+            'title',
+            'description',
+            'location',
+            'date',
+            'past',
+          ],
+          include: [
+            {
+              model: File,
+              as: 'banner',
+              attributes: ['id', 'path', 'url'],
+            },
+            {
+              // pulling the user (organizer) info of the meetup
+              model: User,
+              as: 'organizer',
+              attributes: ['id', 'name', 'email'],
+              // pulling the avatar picture of the organizer
+              include: [
+                {
+                  model: File,
+                  as: 'avatar',
+                  attributes: ['id', 'path', 'url'],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    });
+
+    return res.json(subscriptions);
   }
 }
 

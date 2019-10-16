@@ -65,9 +65,9 @@ In this listing, also return the organizer's information. :ballot_box_with_check
 
 ### _Listing the subscriptions_
 
-There is a route to list the meetups that the logged user is registered.
+There is a route to list the meetups that the logged user is registered. :ballot_box_with_check:
 
-Only list those meetups that haven't happened yet. Also, sort the nearest meetup as first ones of the list.
+Only list those meetups that haven't happened yet. Also, sort the closest meetup to happen as first ones of the list. :ballot_box_with_check:
 
 #
 

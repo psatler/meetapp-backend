@@ -5,13 +5,24 @@ import Meetup from '../models/Meetup';
 import User from '../models/User';
 import File from '../models/File';
 
+import Mail from '../../lib/Mail';
+
 class SubscriptionController {
   async store(req, res) {
     const loggedUserId = req.userId;
     const { meetupId } = req.params;
 
-    // meetup the user wants to subscribe to
-    const foundMeetup = await Meetup.findByPk(meetupId);
+    // meetup the user wants to subscribe to. We are also getting the organizer`s info to use in the email
+    const foundMeetup = await Meetup.findByPk(meetupId, {
+      include: [
+        {
+          model: User,
+          as: 'organizer',
+        },
+      ],
+    });
+
+    console.log(foundMeetup);
 
     if (!foundMeetup) {
       return res.status(400).json({
@@ -86,6 +97,13 @@ class SubscriptionController {
     const createdSub = await Subscription.create({
       user_id: loggedUserId,
       meetup_id: meetupId,
+    });
+
+    // testing sending of email
+    await Mail.sendMail({
+      to: `${foundMeetup.organizer.name} <${foundMeetup.organizer.email}>`,
+      subject: 'Usuario inscrito',
+      text: `You have a new subscriber to the ${foundMeetup.title}`,
     });
 
     return res.json(createdSub);

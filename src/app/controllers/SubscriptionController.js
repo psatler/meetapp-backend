@@ -1,5 +1,5 @@
 import { Op } from 'sequelize';
-import { parseISO } from 'date-fns';
+import { parseISO, format } from 'date-fns';
 import Subscription from '../models/Subscription';
 import Meetup from '../models/Meetup';
 import User from '../models/User';
@@ -21,8 +21,6 @@ class SubscriptionController {
         },
       ],
     });
-
-    console.log(foundMeetup);
 
     if (!foundMeetup) {
       return res.status(400).json({
@@ -99,11 +97,22 @@ class SubscriptionController {
       meetup_id: meetupId,
     });
 
+    // get subscriber info
+    const subscriberInfo = await User.findByPk(loggedUserId);
+
     // testing sending of email
     await Mail.sendMail({
       to: `${foundMeetup.organizer.name} <${foundMeetup.organizer.email}>`,
-      subject: 'Usuario inscrito',
-      text: `You have a new subscriber to the ${foundMeetup.title}`,
+      subject: 'You`ve got a new subscriber',
+      // text: `You have a new subscriber to the ${foundMeetup.title}`,
+      template: 'subscription',
+      context: {
+        organizer: foundMeetup.organizer.name,
+        user: subscriberInfo && subscriberInfo.name,
+        userEmail: subscriberInfo && subscriberInfo.email,
+        eventName: foundMeetup.title,
+        eventDate: format(foundMeetup.date, "'On' MMMM dd, 'at' H:mm "),
+      },
     });
 
     return res.json(createdSub);

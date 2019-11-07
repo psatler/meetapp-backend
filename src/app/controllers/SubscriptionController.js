@@ -1,11 +1,12 @@
 import { Op } from 'sequelize';
-import { parseISO, format } from 'date-fns';
 import Subscription from '../models/Subscription';
 import Meetup from '../models/Meetup';
 import User from '../models/User';
 import File from '../models/File';
 
-import Mail from '../../lib/Mail';
+// import Mail from '../../lib/Mail';
+import SubscriptionMail from '../jobs/SubscriptionMail';
+import Queue from '../../lib/Queue';
 
 class SubscriptionController {
   async store(req, res) {
@@ -100,20 +101,8 @@ class SubscriptionController {
     // get subscriber info
     const subscriberInfo = await User.findByPk(loggedUserId);
 
-    // testing sending of email
-    await Mail.sendMail({
-      to: `${foundMeetup.organizer.name} <${foundMeetup.organizer.email}>`,
-      subject: 'You`ve got a new subscriber',
-      // text: `You have a new subscriber to the ${foundMeetup.title}`,
-      template: 'subscription',
-      context: {
-        organizer: foundMeetup.organizer.name,
-        user: subscriberInfo && subscriberInfo.name,
-        userEmail: subscriberInfo && subscriberInfo.email,
-        eventName: foundMeetup.title,
-        eventDate: format(foundMeetup.date, "'On' MMMM dd, 'at' H:mm "),
-      },
-    });
+    // passing the key of the queue and data used by the job as an object
+    await Queue.add(SubscriptionMail.key, { foundMeetup, subscriberInfo });
 
     return res.json(createdSub);
   }

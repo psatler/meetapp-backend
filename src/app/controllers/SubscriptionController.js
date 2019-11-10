@@ -112,7 +112,7 @@ class SubscriptionController {
 
     // below it shows the pieces of information of the meetup along with the
     // its banner image and the organizer info as well
-    const subscriptions = await Subscription.findAll({
+    const subscriptions = await Subscription.finddAll({
       where: {
         user_id: loggedUserId,
       },

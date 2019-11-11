@@ -33,14 +33,11 @@ class Database {
 
   mongo() {
     // setting up a mongo db connection
-    this.mongoConnection = mongoose.connect(
-      'mongodb://localhost:27017/meetupapp',
-      {
-        useNewUrlParser: true,
-        useFindAndModify: true,
-        useUnifiedTopology: true,
-      }
-    );
+    this.mongoConnection = mongoose.connect(process.env.MONGO_URL, {
+      useNewUrlParser: true,
+      useFindAndModify: true,
+      useUnifiedTopology: true,
+    });
   }
 }
 

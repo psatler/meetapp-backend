@@ -11,7 +11,7 @@ class File extends Model {
           // this columns does not exist in DB. It is used to serve the file to be displayed on frontend
           type: Sequelize.VIRTUAL,
           get() {
-            const staticFileURL = `http://localhost:3333/files/${this.path}`;
+            const staticFileURL = `${process.env.APP_URL}/files/${this.path}`;
             return staticFileURL;
           },
         },

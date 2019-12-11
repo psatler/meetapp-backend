@@ -1,5 +1,6 @@
 import * as Yup from 'yup';
 import User from '../models/User';
+import File from '../models/File';
 
 class UserController {
   async store(req, res) {
@@ -87,12 +88,26 @@ class UserController {
     }
 
     // if everything passes, we update the user
-    const { id, name, email: userEmail } = await user.update(req.body);
+    await user.update(req.body);
+    const { id, name, email: userEmail, avatar } = await User.findByPk(
+      req.userId,
+      {
+        include: [
+          {
+            model: File,
+            as: 'avatar',
+            attributes: ['id', 'path', 'url'],
+          },
+        ],
+      }
+    );
+    // performing another query to get the update avatar of the user
 
     return res.json({
       id,
       name,
       email: userEmail,
+      avatar,
     });
   }
 }

@@ -1,6 +1,7 @@
 import 'dotenv/config';
 import express from 'express';
 import Youch from 'youch';
+import cors from 'cors';
 import { resolve } from 'path';
 import * as Sentry from '@sentry/node';
 import 'express-async-errors';
@@ -24,6 +25,8 @@ class App {
   middleware() {
     // The request handler must be the first middleware on the app - This is a sentry middleware
     this.server.use(Sentry.Handlers.requestHandler());
+    // adding cors to filter which URLs can access our API
+    this.server.use(cors());
     // making it possible to handle json requests
     this.server.use(express.json());
     // for static files

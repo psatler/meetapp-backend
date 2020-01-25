@@ -190,6 +190,44 @@ class MeetupController {
 
     return res.send();
   }
+
+  async show(req, res) {
+    // const loggedUserId = req.userId; // property added in the middleware
+    const { meetupId } = req.params;
+    console.log('meetupId', meetupId);
+
+    const foundMeetup = await Meetup.findByPk(meetupId, {
+      include: [
+        // including info got from the relationship with Files table
+        {
+          model: File,
+          as: 'banner',
+          attributes: ['id', 'name', 'path', 'url'],
+        },
+        {
+          model: User,
+          as: 'organizer',
+          attributes: ['id', 'name', 'email'],
+          include: [
+            {
+              model: File,
+              as: 'avatar',
+              attributes: ['id', 'path', 'url'],
+            },
+          ],
+        },
+      ],
+    });
+
+    // if null
+    if (!foundMeetup) {
+      return res
+        .status(400)
+        .json({ error: 'Meetup not found for with this id' });
+    }
+
+    return res.json(foundMeetup);
+  }
 }
 
 export default new MeetupController();

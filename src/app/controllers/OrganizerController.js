@@ -10,7 +10,7 @@ class OrganizerController {
       where: {
         user_id: loggedUserID,
       },
-      attributes: ['id', 'title', 'description', 'location', 'date'],
+      attributes: ['id', 'title', 'description', 'location', 'date', 'past'],
       include: [
         {
           model: File,

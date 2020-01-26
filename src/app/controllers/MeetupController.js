@@ -132,22 +132,24 @@ class MeetupController {
     }
 
     // check if date entered by user is not a past date or an invalid one
-    const dateEntered = parseISO(req.body.date);
-    if (!isValid(dateEntered)) {
-      return res.status(400).json({
-        error: 'Date inserted is invalid',
-      });
-    }
-    if (isBefore(dateEntered, new Date())) {
-      return res.status(400).json({
-        error: 'Date inserted is a past date',
-      });
+    if (req.body.date) {
+      const dateEntered = parseISO(req.body.date);
+      if (!isValid(dateEntered)) {
+        return res.status(400).json({
+          error: 'Date inserted is invalid',
+        });
+      }
+      if (isBefore(dateEntered, new Date())) {
+        return res.status(400).json({
+          error: 'Date inserted is a past date',
+        });
+      }
     }
 
     // user cannot update past meetups
     if (foundMeetup.past) {
       return res.status(400).json({
-        error: 'Can not update past updates',
+        error: 'Can not update past meetups',
       });
     }
 

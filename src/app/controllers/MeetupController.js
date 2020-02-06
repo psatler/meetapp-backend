@@ -154,7 +154,19 @@ class MeetupController {
     }
 
     // if pass all validations, update fields passed in the body of the request
-    const meetupUpdated = await foundMeetup.update(req.body);
+    await foundMeetup.update(req.body);
+
+    // performing another query to get the update banner of the meetup
+    const meetupUpdated = await Meetup.findByPk(meetupId, {
+      include: [
+        {
+          model: File,
+          as: 'banner',
+          attributes: ['id', 'path', 'url'],
+        },
+      ],
+    });
+
     // console.log(foundMeetup.past);
     return res.json(meetupUpdated);
   }
@@ -196,7 +208,6 @@ class MeetupController {
   async show(req, res) {
     // const loggedUserId = req.userId; // property added in the middleware
     const { meetupId } = req.params;
-    console.log('meetupId', meetupId);
 
     const foundMeetup = await Meetup.findByPk(meetupId, {
       include: [

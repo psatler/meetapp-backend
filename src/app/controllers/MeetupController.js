@@ -48,6 +48,19 @@ class MeetupController {
       console.warn('MeetupController.store', error);
     }
 
+    if (meetup && meetup.id) {
+      // performing another query to get the update banner of the meetup
+      meetup = await Meetup.findByPk(meetup.id, {
+        include: [
+          {
+            model: File,
+            as: 'banner',
+            attributes: ['id', 'path', 'url'],
+          },
+        ],
+      });
+    }
+
     return res.json(meetup);
   }
 
@@ -156,7 +169,7 @@ class MeetupController {
     // if pass all validations, update fields passed in the body of the request
     await foundMeetup.update(req.body);
 
-    // performing another query to get the update banner of the meetup
+    // performing another query to get the updated banner of the meetup
     const meetupUpdated = await Meetup.findByPk(meetupId, {
       include: [
         {

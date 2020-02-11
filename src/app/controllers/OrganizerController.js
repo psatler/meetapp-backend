@@ -11,6 +11,7 @@ class OrganizerController {
         user_id: loggedUserID,
       },
       attributes: ['id', 'title', 'description', 'location', 'date', 'past'],
+      order: [['date', 'ASC']],
       include: [
         {
           model: File,

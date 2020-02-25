@@ -17,6 +17,23 @@ This is a portfolio project showcasing Nodejs in the backend. The application is
 
 #
 
+## Table of Contents
+
+<!-- - [How to Run](#how-to-run) -->
+
+- [Features](#features)
+  - [Authentication](#authentication)
+  - [Registration and update of user](#registration-and-update-of-user)
+  * [Files management](#files-management)
+  * [Meetup management](#meetup-management)
+  * [Meetup subscription](#meetup-subscription)
+  * [Listing the meetups](#listing-the-meetups)
+  * [Listing the subscriptions](#listing-the-subscriptions)
+    <!-- - [Screens of the app](#screens-of-the-app) -->
+- [Some dependecies used](#some-dependecies-used)
+  <!-- - [Acknowledgements](#acknowledgements) -->
+- [License](#license)
+
 ## Features
 
 ### _Authentication_
@@ -82,13 +99,32 @@ Only list those meetups that haven't happened yet. Also, sort the closest meetup
 
 #
 
-## Some tools used
+## Some dependecies used
 
-- Sucrase + nodemon
-- ESLint + Prettier + EditorConfig
-- Sequelize with PostgresSQL
+- [Sucrase](https://github.com/alangpierce/sucrase): It's a transpiler like babel (but faster) which allow us to use ES6 features in Nodejs, like `import` syntax instead of `require`.
+- [Nodemon](https://github.com/remy/nodemon): it's a tool that monitors files changes in nodejs based applications, relauching the application when these changes are detected.
+- [ESLint](https://github.com/eslint/eslint): A fully pluggable tool for identifying and reporting on patterns in JavaScript
+- [Prettier](https://github.com/prettier/prettier): An opinionated code formatter
+- [EditorConfig](https://github.com/editorconfig/editorconfig): It helps maintain consistent coding styles for multiple developers working on the same project across various editors and IDEs.
+- [PostgresQL](https://hub.docker.com/_/postgres): used for data storage
+- [Sequelize](https://github.com/sequelize/sequelize): An ORM (Object-relational mapping) for Nodejs
+    <!-- - [Mongo DB](https://hub.docker.com/_/mongo): a NOSQL database used for storing notifications -->
+  <!-- - [Mongoose](https://github.com/Automattic/mongoose): elegant mongodb object modeling for node.js -->
+- [Redis](https://hub.docker.com/_/redis/): a key-value in memory storage
+- [Bee-Queue](https://github.com/bee-queue/bee-queue): for managing the emails (as jobs) to be sent when a user subscribes to the meetup
+- [Nodemailer](https://nodemailer.com/about/): Nodejs module for sending emails
+- [Nodemailer Express Handlebars](https://www.npmjs.com/package/nodemailer-express-handlebars): A plugin for nodemailer that uses express-handlebars view engine to generate emails.
+- [Multer](https://github.com/expressjs/multer): Node.js middleware for handling multipart/form-data (primarly used for uploading files)
+- [Sentry](https://sentry.io/welcome/) for error monitoring in production
 
 #
+
+<!-- ## Acknowledgements
+
+Using docker to isolate the services used by the backend application. So, a container for Nodejs, another for Redis  and another one for PostgresQL.
+
+
+#  -->
 
 ## License
 

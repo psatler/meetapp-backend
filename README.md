@@ -115,6 +115,8 @@ Only list those meetups that haven't happened yet. Also, sort the closest meetup
 - [Nodemailer](https://nodemailer.com/about/): Nodejs module for sending emails
 - [Nodemailer Express Handlebars](https://www.npmjs.com/package/nodemailer-express-handlebars): A plugin for nodemailer that uses express-handlebars view engine to generate emails.
 - [Multer](https://github.com/expressjs/multer): Node.js middleware for handling multipart/form-data (primarly used for uploading files)
+- [Yup](https://github.com/jquense/yup): Dead simple Object schema validation
+- [Axios](https://github.com/axios/axios): Promise based HTTP client for the browser and node.js
 - [Sentry](https://sentry.io/welcome/) for error monitoring in production
 
 #

@@ -19,6 +19,8 @@ services:
   postgresdb:
     container_name: postgres-database
     image: postgres
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data # to store the data created even when 'docker-compose down'
     restart: unless-stopped
     ports:
       - 5432:5432
@@ -64,6 +66,7 @@ services:
       MAIL_PASS: <insert-your-mailtrap-pass>
 
       # MONGO_URL: mongodb://localhost:27017/meetupapp
+      # SENTRY_DSN=https://<your-number-credentials>@sentry.io/xxxxxxx # register from a sentry account
 
 networks:
   meetappnetwork:

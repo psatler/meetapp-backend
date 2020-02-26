@@ -146,12 +146,15 @@ Only list those meetups that haven't happened yet. Also, sort the closest meetup
 
 <!-- ## Acknowledgements
 
-Using docker to isolate the services used by the backend application. So, a container for Nodejs, another for Redis  and another one for PostgresQL.
+Using docker to isolate the services used by the backend application. So, a container for Nodejs, another for Redis and another one for PostgresQL.
 
+to perform a dump from Postgres container named 'database': `sudo docker exec -it database pg_dumpall -c -U postgres > dump_`date +%d-%m-%Y"_"%H_%M\_%S`.sql`
+
+to restore the database: `cat your_dump.sql | docker exec -i your-db-container psql -U postgres`
 
 To fix files according to ESLint: `yarn eslint --fix src --ext .js`
 
-#  -->
+# -->
 
 ## License
 

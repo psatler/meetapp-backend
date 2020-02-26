@@ -19,7 +19,7 @@ This is a portfolio project showcasing Nodejs in the backend. The application is
 
 ## Table of Contents
 
-<!-- - [How to Run](#how-to-run) -->
+- [How to Run](#how-to-run)
 
 - [Features](#features)
   - [Authentication](#authentication)
@@ -33,6 +33,31 @@ This is a portfolio project showcasing Nodejs in the backend. The application is
 - [Some dependecies used](#some-dependecies-used)
   <!-- - [Acknowledgements](#acknowledgements) -->
 - [License](#license)
+
+## How to run
+
+The easiest way to run this backend application is by using Docker and Docker-Compose.
+
+```
+sudo docker-compose up
+```
+
+Then, execute the migrations defined in the `src/database/migrations` to create the tables for the database of the application.
+
+```
+yarn sequelize db:migrate
+
+or
+
+npx sequelize db:migrate
+```
+
+After that, you should be all set with the backend.
+
+**Tips**:
+
+- you can visualize if the postgres database is running by using a GUI interface like [Postbird](https://www.electronjs.org/apps/postbird) (you can also use a CLI for that).
+- you can also refer to the available commands for the sequelize-cli [here](https://www.npmjs.com/package/sequelize-cli).
 
 ## Features
 
@@ -123,10 +148,17 @@ Only list those meetups that haven't happened yet. Also, sort the closest meetup
 
 <!-- ## Acknowledgements
 
-Using docker to isolate the services used by the backend application. So, a container for Nodejs, another for Redis  and another one for PostgresQL.
+Using docker to isolate the services used by the backend application. So, a container for Nodejs, another for Redis and another one for PostgresQL.
 
+to perform a dump from Postgres container named 'database': `sudo docker exec -it database pg_dumpall -c -U postgres > dump_`date +%d-%m-%Y"_"%H_%M\_%S`.sql`
 
-#  -->
+to restore the database: `cat your_dump.sql | docker exec -i your-db-container psql -U postgres`
+
+https://stackoverflow.com/questions/24718706/backup-restore-a-dockerized-postgresql-database
+
+To fix files according to ESLint: `yarn eslint --fix src --ext .js`
+
+# -->
 
 ## License
 

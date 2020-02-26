@@ -1,0 +1,72 @@
+version: '3.2'
+services:
+  mongodb:
+    container_name: mongo-database
+    image: mongo
+    restart: unless-stopped
+    ports:
+      - 27017:27017
+
+  redisdb:
+    container_name: redis-database
+    image: redis
+    restart: unless-stopped
+    ports:
+      - 6379:6379
+    networks:
+      - meetappnetwork
+
+  postgresdb:
+    container_name: postgres-database
+    image: postgres
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data # to store the data created even when 'docker-compose down'
+    restart: unless-stopped
+    ports:
+      - 5432:5432
+    networks:
+      - meetappnetwork
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: docker
+      POSTGRES_DB: meetapp
+      # TZ: GMT
+
+  node-app:
+    container_name: nodejs-backend
+    build: .
+    # image: meetapp-backend-nodejs-server # in case you have built the image before
+    depends_on:
+      - postgresdb
+      - redisdb
+      - mongodb
+    restart: unless-stopped
+    ports:
+      - '3333:3333'
+    networks:
+      - meetappnetwork
+    environment:
+      DB_HOST: postgresdb # the name of the service used above
+      DB_USER: postgres # same as POSTGRES_USER above
+      DB_PASS: docker # same as POSTGRES_PASSWORD above
+      DB_NAME: meetapp # same as POSTGRES_DB above
+
+      REDIS_HOST: redisdb # the name of the service used above
+      REDIS_PORT: 6379 # you can change this ports you want to
+
+      APP_SECRET: df1ae6885734758712e86808dae636d8 # for creating the json web tokens
+
+      APP_URL: http://localhost:3333
+      NODE_ENV: development
+
+      # for sending emails with mailtrap.io
+      MAIL_HOST: smtp.mailtrap.io
+      MAIL_PORT: 2525
+      MAIL_USER: <insert-your-mailtrap-user>
+      MAIL_PASS: <insert-your-mailtrap-pass>
+
+      # MONGO_URL: mongodb://localhost:27017/meetupapp
+      # SENTRY_DSN=https://<your-number-credentials>@sentry.io/xxxxxxx # register from a sentry account
+
+networks:
+  meetappnetwork:

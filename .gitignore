@@ -7,4 +7,4 @@ tmp/uploads/*
 !tmp/uploads/.gitkeep
 
 # used for storing the postgres database files created so we don't lose it at docker-compose down
-pgdata/*
+pgdata

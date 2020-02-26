@@ -152,6 +152,8 @@ to perform a dump from Postgres container named 'database': `sudo docker exec -i
 
 to restore the database: `cat your_dump.sql | docker exec -i your-db-container psql -U postgres`
 
+https://stackoverflow.com/questions/24718706/backup-restore-a-dockerized-postgresql-database
+
 To fix files according to ESLint: `yarn eslint --fix src --ext .js`
 
 # -->

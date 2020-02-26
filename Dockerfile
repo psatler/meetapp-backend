@@ -16,6 +16,9 @@ RUN npm install
 COPY . .
 
 EXPOSE 3333
-CMD npm run dev && npm run queue
+
+COPY entrypoint.sh /
+ENTRYPOINT [ "/bin/bash", "/entrypoint.sh" ]
+
 # CMD ["npm", "run", "dev"]
 # CMD [ "node", "server.js" ]

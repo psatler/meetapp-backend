@@ -36,21 +36,23 @@ This is a portfolio project showcasing Nodejs in the backend. The application is
 
 ## How to run
 
-The easiest way to run this backend application is by using Docker and Docker-Compose.
+The easiest way to run this backend application is by using Docker and Docker-Compose. So, you should have both installed on you machine to run this as demonstrated below.
+
+### running with Docker
+
+First, you need to clone this repository to your local machine. After done cloning, change directory into it. Next, you should start the containers using the `docker-compose up` command. All the steps are shown below:
 
 ```
+git clone https://github.com/psatler/meetapp-backend.git
+
+cd meetapp-backend
+
 sudo docker-compose up
 ```
 
-Then, execute the migrations defined in the `src/database/migrations` to create the tables for the database of the application.
+PS: if you have docker added to your user group, you might not need to add sudo in front of the command.
 
-```
-yarn sequelize db:migrate
-
-or
-
-npx sequelize db:migrate
-```
+PS2: The migrations for the PostgresQL DB is set up to be run on the container start up, so we should have the database ready after the command above finishes its start up process;
 
 After that, you should be all set with the backend.
 

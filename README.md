@@ -153,7 +153,7 @@ This application was tested along with the [Insomnia](https://insomnia.rest/) RE
 
   - **_get_** (show - display one meetup): `/meetups/{meetupId}` - get meetup information by ID.
 
-  - **_get_** (list - index): `/meetups` - list the all meetups. It can receive query parameters as _date_ and _page_, becoming `/meetups?date=2020-04-22&page=1`. This is better explained at the [Listing the meetups](#listing-the-meetups) subsection above.
+  - **_get_** (list - index): `/meetups` - list the all meetups. It can receive query parameters as _date_ and _page_, becoming `/meetups?date=2020-04-22&page=1`, for example. This is better explained at the [Listing the meetups](#listing-the-meetups) subsection above.
 
   - **_post_** (create/store): `/meetups` - create a brand new meetup.
 
@@ -174,6 +174,8 @@ This application was tested along with the [Insomnia](https://insomnia.rest/) RE
   - **_post_** (create/store - it's a public route): `/users` - creates a brand new user. The _name_, _email_ and _password_ of the new user is sent via the body of the request as _json_.
 
   - **_put_** (update): `/users` - updates the pieces of information about the logged in user. The new name, email or even avatar (`avatar_id`) are sent via the body of the request via _json_.
+
+[Back to Top](#meetapp)
 
 ### _Running with Insomnia_
 

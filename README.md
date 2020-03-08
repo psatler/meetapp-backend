@@ -41,7 +41,7 @@ This is a portfolio project showcasing Nodejs in the backend. The application is
 
 The easiest way to run this backend application is by using Docker and Docker-Compose. So, you should have both installed on you machine to run this as demonstrated below.
 
-### running with Docker
+### _running with Docker_
 
 First, you need to clone this repository to your local machine. After done cloning, change directory into it. Next, you should start the containers using the `docker-compose up` command. All the steps are shown below:
 
@@ -63,6 +63,8 @@ After that, you should be all set with the backend.
 
 - you can visualize if the postgres database is running by using a GUI interface like [Postbird](https://www.electronjs.org/apps/postbird) (you can also use a CLI for that).
 - you can also refer to the available commands for the sequelize-cli [here](https://www.npmjs.com/package/sequelize-cli).
+
+[Back to Top](#meetapp)
 
 ## Features
 
@@ -141,6 +143,10 @@ You can load the endpoints to test with the Insomnia REST client by clicking on 
 
 [![Run in Insomnia}](https://insomnia.rest/images/run.svg)](https://insomnia.rest/run/?label=Meetup%20Backend%20API%20Test&uri=https%3A%2F%2Fraw.githubusercontent.com%2Fpsatler%2Fmeetapp-backend%2Fmaster%2Finsomnia-export%2FInsomnia_2020-march-8th.json)
 
+Then, copy the URL and in the Insomnia app, look for the _Import Data_ button, and choose _From URL_.
+
+[Back to Top](#meetapp)
+
 #
 
 ## Some dependecies used
@@ -163,6 +169,8 @@ You can load the endpoints to test with the Insomnia REST client by clicking on 
 - [Axios](https://github.com/axios/axios): Promise based HTTP client for the browser and node.js
 - [Sentry](https://sentry.io/welcome/) for error monitoring in production
 
+[Back to Top](#meetapp)
+
 #
 
 ## Acknowledgements
@@ -173,6 +181,8 @@ You can load the endpoints to test with the Insomnia REST client by clicking on 
 - To fix files according to ESLint, for example, `js` files inside the _src_ folder: `yarn eslint --fix src --ext .js`
 
 - To create the _Run in insomnia_ button, you can follow the instructions found at [https://support.insomnia.rest/article/68-run-button](https://support.insomnia.rest/article/68-run-button) or this [youtube video](https://youtu.be/3tB0uDliS6Y?t=1757) (in Pt-BR). In summary, paste the URL (from the Raw view) of the exported json at [https://insomnia.rest/create-run-button/](https://insomnia.rest/create-run-button/) so that we have a markdown snippet for the button with the exported json.
+
+[Back to Top](#meetapp)
 
 #
 

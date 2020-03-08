@@ -129,6 +129,8 @@ There is a route to list the meetups that the logged user is registered. :ballot
 
 Only list those meetups that haven't happened yet. Also, sort the closest meetup to happen as first ones of the list. :ballot_box_with_check:
 
+[Back to Top](#meetapp)
+
 #
 
 ## Endpoints
@@ -137,13 +139,49 @@ This application was tested along with the [Insomnia](https://insomnia.rest/) RE
 
 ### _Explanation_
 
+- **Subscription**
+
+  - **_post_** (create): `/meetup/{meetupId}/subscription` - subscribe logged in user to the meetup.
+
+  - **_get_** (list): `/subscriptions` - list the user's subscriptions.
+
+- **Organizer**
+
+  - **_get_** (list): `/organizer` - list the meetups organized by the logged in user.
+
+- **Meetups**
+
+  - **_get_** (show - display one meetup): `/meetups/{meetupId}` - get meetup information by ID.
+
+  - **_get_** (list - index): `/meetups` - list the all meetups. It can receive query parameters as _date_ and _page_, becoming `/meetups?date=2020-04-22&page=1`. This is better explained at the [Listing the meetups](#listing-the-meetups) subsection above.
+
+  - **_post_** (create/store): `/meetups` - create a brand new meetup.
+
+  - **_put_** (update): `/meetups/{meetupId}` - update a meetup by ID.
+
+  - **_delete_**: `/meetups/{meetupId}` - delete a meetup by ID.
+
+- **Files**
+
+  - **_post_** (create/store): `/files` - uploads and store the banner/avatar image file in the API. The files is sent as a _Multipart Form_ data in the body with the property named as `file`.
+
+- **Session**
+
+  - **_post_** (create/store - it's a public route): `/session` - creates the user session returning the jwt token used for authentication in the routes. The email and password credentials are sent via _json_ in the request body.
+
+- **Users**
+
+  - **_post_** (create/store - it's a public route): `/users` - creates a brand new user. The _name_, _email_ and _password_ of the new user is sent via the body of the request as _json_.
+
+  - **_put_** (update): `/users` - updates the pieces of information about the logged in user. The new name, email or even avatar (`avatar_id`) are sent via the body of the request via _json_.
+
 ### _Running with Insomnia_
 
 You can load the endpoints to test with the Insomnia REST client by clicking on the button below:
 
 [![Run in Insomnia}](https://insomnia.rest/images/run.svg)](https://insomnia.rest/run/?label=Meetup%20Backend%20API%20Test&uri=https%3A%2F%2Fraw.githubusercontent.com%2Fpsatler%2Fmeetapp-backend%2Fmaster%2Finsomnia-export%2FInsomnia_2020-march-8th.json)
 
-Then, copy the URL and in the Insomnia app, look for the _Import Data_ button, and choose _From URL_.
+Then, copy the URL and in the Insomnia app, look for the _Import Data_ button, and choose _From URL_ to load it to your app.
 
 [Back to Top](#meetapp)
 

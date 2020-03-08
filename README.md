@@ -24,12 +24,15 @@ This is a portfolio project showcasing Nodejs in the backend. The application is
 - [Features](#features)
   - [Authentication](#authentication)
   - [Registration and update of user](#registration-and-update-of-user)
-  * [Files management](#files-management)
-  * [Meetup management](#meetup-management)
-  * [Meetup subscription](#meetup-subscription)
-  * [Listing the meetups](#listing-the-meetups)
-  * [Listing the subscriptions](#listing-the-subscriptions)
+  - [Files management](#files-management)
+  - [Meetup management](#meetup-management)
+  - [Meetup subscription](#meetup-subscription)
+  - [Listing the meetups](#listing-the-meetups)
+  - [Listing the subscriptions](#listing-the-subscriptions)
     <!-- - [Screens of the app](#screens-of-the-app) -->
+- [Endpoints](#endpoints)
+  - [Explanation](#_explanation_)
+  - [Running with insomnia](#_running-with-insomnia_)
 - [Some dependecies used](#some-dependecies-used)
   <!-- - [Acknowledgements](#acknowledgements) -->
 - [License](#license)
@@ -126,6 +129,18 @@ Only list those meetups that haven't happened yet. Also, sort the closest meetup
 
 #
 
+## Endpoints
+
+This application was tested along with the [Insomnia](https://insomnia.rest/) REST client. Below you'll find an explanation of each endpoint this backend has and also a button to download the examples/endpoints used and load in your insomnia instance.
+
+### _Explanation_
+
+### _Running with Insomnia_
+
+Run-in-insomnia button goes here!!!
+
+#
+
 ## Some dependecies used
 
 - [Sucrase](https://github.com/alangpierce/sucrase): It's a transpiler like babel (but faster) which allow us to use ES6 features in Nodejs, like `import` syntax instead of `require`.
@@ -148,19 +163,16 @@ Only list those meetups that haven't happened yet. Also, sort the closest meetup
 
 #
 
-<!-- ## Acknowledgements
+## Acknowledgements
 
-Using docker to isolate the services used by the backend application. So, a container for Nodejs, another for Redis and another one for PostgresQL.
+- This backend is using docker to isolate the services used by the application. So, a container for Nodejs, another for Redis and another one for PostgresQL (there is also one for mongoDB). To perform a dump from Postgres container named 'database', you can do: `sudo docker exec -it database pg_dumpall -c -U postgres > dump_`date +%d-%m-%Y"_"%H_%M\_%S`.sql`
+  On the other hand, to restore the database, you can run: `cat your_dump.sql | docker exec -i your-db-container psql -U postgres`. More on that can be found at the following [stackoverflow link](https://stackoverflow.com/questions/24718706/backup-restore-a-dockerized-postgresql-database).
 
-to perform a dump from Postgres container named 'database': `sudo docker exec -it database pg_dumpall -c -U postgres > dump_`date +%d-%m-%Y"_"%H_%M\_%S`.sql`
+- To fix files according to ESLint, for example, `js` files inside the _src_ folder: `yarn eslint --fix src --ext .js`
 
-to restore the database: `cat your_dump.sql | docker exec -i your-db-container psql -U postgres`
+- To create the _Run in insomnia_ button, you can follow the instructions found at [https://support.insomnia.rest/article/68-run-button](https://support.insomnia.rest/article/68-run-button) or this [youtube video](https://youtu.be/3tB0uDliS6Y?t=1757) (in Pt-BR). In summary, paste the URL of the exported json so that we have a markdown snippet for the button with the exported json.
 
-https://stackoverflow.com/questions/24718706/backup-restore-a-dockerized-postgresql-database
-
-To fix files according to ESLint: `yarn eslint --fix src --ext .js`
-
-# -->
+#
 
 ## License
 

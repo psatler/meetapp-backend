@@ -31,8 +31,8 @@ This is a portfolio project showcasing Nodejs in the backend. The application is
   - [Listing the subscriptions](#listing-the-subscriptions)
     <!-- - [Screens of the app](#screens-of-the-app) -->
 - [Endpoints](#endpoints)
-  - [Explanation](#_explanation_)
-  - [Running with insomnia](#_running-with-insomnia_)
+  - [Explanation](#explanation)
+  - [Running with insomnia](#running-with-insomnia)
 - [Some dependecies used](#some-dependecies-used)
   <!-- - [Acknowledgements](#acknowledgements) -->
 - [License](#license)
@@ -131,13 +131,15 @@ Only list those meetups that haven't happened yet. Also, sort the closest meetup
 
 ## Endpoints
 
-This application was tested along with the [Insomnia](https://insomnia.rest/) REST client. Below you'll find an explanation of each endpoint this backend has and also a button to download the examples/endpoints used and load in your insomnia instance.
+This application was tested along with the [Insomnia](https://insomnia.rest/) REST client. Below you'll find an explanation of each endpoint this backend has and also a button to download the examples/endpoints used and load them in your insomnia app.
 
 ### _Explanation_
 
 ### _Running with Insomnia_
 
-Run-in-insomnia button goes here!!!
+You can load the endpoints to test with the Insomnia REST client by clicking on the button below:
+
+[![Run in Insomnia}](https://insomnia.rest/images/run.svg)](https://insomnia.rest/run/?label=Meetup%20Backend%20API%20Test&uri=https%3A%2F%2Fraw.githubusercontent.com%2Fpsatler%2Fmeetapp-backend%2Fmaster%2Finsomnia-export%2FInsomnia_2020-march-8th.json)
 
 #
 
@@ -170,7 +172,7 @@ Run-in-insomnia button goes here!!!
 
 - To fix files according to ESLint, for example, `js` files inside the _src_ folder: `yarn eslint --fix src --ext .js`
 
-- To create the _Run in insomnia_ button, you can follow the instructions found at [https://support.insomnia.rest/article/68-run-button](https://support.insomnia.rest/article/68-run-button) or this [youtube video](https://youtu.be/3tB0uDliS6Y?t=1757) (in Pt-BR). In summary, paste the URL of the exported json so that we have a markdown snippet for the button with the exported json.
+- To create the _Run in insomnia_ button, you can follow the instructions found at [https://support.insomnia.rest/article/68-run-button](https://support.insomnia.rest/article/68-run-button) or this [youtube video](https://youtu.be/3tB0uDliS6Y?t=1757) (in Pt-BR). In summary, paste the URL (from the Raw view) of the exported json at [https://insomnia.rest/create-run-button/](https://insomnia.rest/create-run-button/) so that we have a markdown snippet for the button with the exported json.
 
 #
 

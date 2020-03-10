@@ -218,6 +218,8 @@ Then, copy the URL and in the Insomnia app, look for the _Import Data_ button, a
 - This backend is using docker to isolate the services used by the application. So, a container for Nodejs, another for Redis and another one for PostgresQL (there is also one for mongoDB). To perform a dump from Postgres container named 'database', you can do: `sudo docker exec -it database pg_dumpall -c -U postgres > dump_`date +%d-%m-%Y"_"%H_%M\_%S`.sql`
   On the other hand, to restore the database, you can run: `cat your_dump.sql | docker exec -i your-db-container psql -U postgres`. More on that can be found at the following [stackoverflow link](https://stackoverflow.com/questions/24718706/backup-restore-a-dockerized-postgresql-database).
 
+- Used docker volumes to persist database data when shutting down the containers. For [Postgres](https://hub.docker.com/_/postgres) image, a volume was set up for the `PGDATA` environment variable.
+
 - To fix files according to ESLint, for example, `js` files inside the _src_ folder: `yarn eslint --fix src --ext .js`
 
 - To create the _Run in insomnia_ button, you can follow the instructions found at [https://support.insomnia.rest/article/68-run-button](https://support.insomnia.rest/article/68-run-button) or this [youtube video](https://youtu.be/3tB0uDliS6Y?t=1757) (in Pt-BR). In summary, paste the URL (from the Raw view) of the exported json at [https://insomnia.rest/create-run-button/](https://insomnia.rest/create-run-button/) so that we have a markdown snippet for the button with the exported json.

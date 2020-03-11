@@ -47,6 +47,8 @@ services:
       - '3333:3333'
     networks:
       - meetappnetwork
+    volumes: # using this volume so we save and persist the photos uploaded to the docker container
+      - ./tmp/uploads:/usr/src/app/tmp/uploads
     environment:
       DB_HOST: postgresdb # the name of the service used above
       DB_USER: postgres # same as POSTGRES_USER above

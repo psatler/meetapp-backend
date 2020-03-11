@@ -220,6 +220,8 @@ Then, copy the URL and in the Insomnia app, look for the _Import Data_ button, a
 
 - Used docker volumes to persist database data when shutting down the containers. For [Postgres](https://hub.docker.com/_/postgres) image, a volume was set up for the `PGDATA` environment variable.
 
+- Also, to save/persist the photos uploaded, it was used volumes to map to a local folder the photos uploaded to the container. To rebuild the container image after the changes, the followind command was ran: `sudo docker-compose up --build`.
+
 - To fix files according to ESLint, for example, `js` files inside the _src_ folder: `yarn eslint --fix src --ext .js`
 
 - To create the _Run in insomnia_ button, you can follow the instructions found at [https://support.insomnia.rest/article/68-run-button](https://support.insomnia.rest/article/68-run-button) or this [youtube video](https://youtu.be/3tB0uDliS6Y?t=1757) (in Pt-BR). In summary, paste the URL (from the Raw view) of the exported json at [https://insomnia.rest/create-run-button/](https://insomnia.rest/create-run-button/) so that we have a markdown snippet for the button with the exported json.

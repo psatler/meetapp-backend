@@ -107,6 +107,29 @@ class SubscriptionController {
     return res.json(createdSub);
   }
 
+  async delete(req, res) {
+    const loggedUserId = req.userId;
+    const { meetupId } = req.params;
+
+    const subscription = await Subscription.findOne({
+      where: {
+        user_id: loggedUserId,
+        meetup_id: meetupId
+      },
+    })
+
+    console.log(subscription)
+
+    if (!subscription) {
+      return res.status(400).json({
+        error: 'Could not delete subscription!'
+      })
+    }
+    await subscription.destroy();
+
+    return res.send();
+  }
+
   async index(req, res) {
     const loggedUserId = req.userId;
 

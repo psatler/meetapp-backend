@@ -220,7 +220,7 @@ Then, copy the URL and in the Insomnia app, look for the _Import Data_ button, a
 
 - Used docker volumes to persist database data when shutting down the containers. For [Postgres](https://hub.docker.com/_/postgres) image, a volume was set up for the `PGDATA` environment variable.
 
-- Also, to save/persist the photos uploaded, it was used volumes to map to a local folder the photos uploaded to the container. To rebuild the container image after the changes, the followind command was ran: `sudo docker-compose up --build`.
+- Also, to save/persist the photos uploaded, it was used volumes to map to a local folder the photos uploaded to the container. To rebuild the container image after the changes, the followind command was ran: `sudo docker-compose up --build`. You might need to delete the `PGDATA` folder first do be able to rebuild the image.
 
 - To fix files according to ESLint, for example, `js` files inside the _src_ folder: `yarn eslint --fix src --ext .js`
 

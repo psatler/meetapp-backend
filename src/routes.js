@@ -31,6 +31,7 @@ routes.get('/organizer', OrganizerController.index);
 
 routes.get('/subscriptions', SubscriptionController.index);
 routes.post('/meetup/:meetupId/subscription', SubscriptionController.store);
+routes.delete('/meetup/:meetupId/subscription', SubscriptionController.delete);
 
 // upload for upload of files
 // single for uploading one file at a time and the fieldname used in the request

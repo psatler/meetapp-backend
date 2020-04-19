@@ -78,6 +78,10 @@ class MeetupController {
       };
     }
 
+    const totalCount = await Meetup.count()
+    // adding the total to the response header
+    res.header('X-Total-Count', totalCount)
+
     const meetups = await Meetup.findAll({
       where: whereObj, // either empty object or one with date range inside
       limit: PAGINATION_LIMIT, // limiting the number of results sent back from the database

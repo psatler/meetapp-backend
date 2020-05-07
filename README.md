@@ -1,11 +1,17 @@
 <p align="center">
-  <img alt="Repository Last Commit Date" src="https://img.shields.io/github/last-commit/psatler/reactjs-github-app?color=blue">
+  <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/psatler/meetapp-backend.svg">
+
+  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/psatler/meetapp-backend.svg">
+
+  <img alt="Repository size" src="https://img.shields.io/github/repo-size/psatler/meetapp-backend.svg">
+
+  <img alt="Repository Last Commit Date" src="https://img.shields.io/github/last-commit/psatler/meetapp-backend?color=blue">
 
   <a href="https://www.linkedin.com/in/pablosatler/">
     <img alt="Made by Pablo Satler" src="https://img.shields.io/badge/made%20by-Pablo%20Satler-blue">
   </a>
 
-  <img alt="License" src="https://img.shields.io/github/license/psatler/reactjs-github-app?color=blue">
+  <img alt="License" src="https://img.shields.io/github/license/psatler/meetapp-backend?color=blue">
 
 </p>
 
